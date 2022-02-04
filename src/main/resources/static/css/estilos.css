@@ -1,0 +1,95 @@
+/* 
+    Created on : 3 feb. 2022, 19:03:53
+    Author     : Esteban Salguero
+*/
+
+#encabezado{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 8%;
+    width: 100%;
+    background-color: #496D8D;
+    color: white;
+}
+
+#encabezado h1{
+    display: inline;
+}
+
+#descripcion{
+    font: size
+}
+
+#menu {
+    position: absolute;
+    top: 8%;
+    left: 0;
+    height: 4%;
+    width: 100%;
+    background-color: #496D8D;
+    color: black;
+}
+
+#menu a:hover{
+    background: green;
+    color: white;
+}
+
+#menu a:visited{
+    background: red;
+    color: white;
+}
+
+#barraLateral{
+    position: absolute;
+    top: 12%;
+    left: 0;
+    height: 81%;
+    width: 20%;
+    background-color: #ccffcc;
+    color: black;
+}
+
+#contenido{
+    position: absolute;
+    top: 12%;
+    left: 20%;
+    height: 81%;
+    width: 80%;
+    background-color: #24A1DF;
+    color: black;
+    overflow: auto;
+}
+
+#pieDePagina{
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    height: 7%;
+    width: 100%;
+    background-color: #003333;
+    color: white;
+    text-align: center;
+    display: inline;
+}
+
+#encabezadoTabla{
+    font-size: 20px;
+    background-color: blue;
+    color: yellow;
+}
+
+#tablaResumen tr{
+    font-size: 25px;
+}
+
+#tablaResumen tr:nth-child(odd){
+    background-color: lightblue;
+    color: black;
+}
+
+#tablaResumen tr:nth-child(even){
+    background-color: white;
+    color: black;
+}
