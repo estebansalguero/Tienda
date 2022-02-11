@@ -4,18 +4,25 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="html5, css3, web, fidelitas">
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="css/menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <!-- Esta etiqueta indica al navegador que es un encabezado -->
-        <header id="encabezado">
-            <h1>Tienda en línea</h1>
-            <br>
+        <header class="header">
+            <nav class="nav">
+                <a href="index.html" class="nav-link logo">Tech Shop</a>
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="Ejemplo9.html">&LeftTriangleBar;</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="Ejemplo1.html">&RightTriangleBar;</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="audios.html">Audios</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="videos.html">Videos</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="iframe.html">iFrame</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="formulario.html">Formularios</a></li>
+                </ul>
+            </nav>
         </header>
-        <nav id="menu">
-            <a href="index.html">HOME</a>
-            <a href="Ejemplo1.html">SIGUIENTE</a>
-        </nav>
         <aside id="barraLateral">
             <h2>Productos más vendidos</h2>
             <p class="descripcion">Lorem ipsum dolor sit amet consectetur adipiscing elit justo velit augue, ridiculus praesent dui nunc odio dictumst accumsan elementum tristique aptent, libero litora metus dapibus massa consequat mattis eu bibendum. Vel mollis nullam conubia proin nibh dapibus, molestie gravida in mauris sem, ligula cras hac nostra elementum. Netus leo pretium tempus nibh cubilia sem habitasse scelerisque massa quis, vitae dictum nulla proin facilisi varius tellus inceptos magna, euismod cras eu sapien porta tortor neque suscipit senectus.</p>
@@ -77,7 +84,7 @@
                 </table>
                 <br>
                 <br>
-                
+
                 <table border="1" id="tablaDato">
                     <thead>
                         <tr>
@@ -101,7 +108,7 @@
             </article>
         </section>
         <footer id="pieDePagina">
-            Derechos reservados &COPY;
+            Derechos reservados &COPY; Esteban Salguero 2022
         </footer>
     </body>
 </html>
