@@ -5,12 +5,18 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <header th:fragment="header">
-            <h1 style="color:blueviolet">TechShop</h1>
-            <br>
-            <a th:href="@{/}">Home</a>
-            <br>
-            <br>
+        <header class="header">
+            <nav class="nav">
+                <a href="index.html" class="nav-link logo">Tech Shop</a>
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="Ejemplo9.html">&LeftTriangleBar;</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="Ejemplo1.html">&RightTriangleBar;</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="audios.html">Audios</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="videos.html">Videos</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="iframe.html">iFrame</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="formulario.html">Formularios</a></li>
+                </ul>
+            </nav>
         </header>
 
         <footer>

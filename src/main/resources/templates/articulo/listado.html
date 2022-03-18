@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlsn:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla ::header"></header>
+
+        <div class="contenido">
+            <h2>Listado de artículos</h2>
+            <br>
+            <a th:href="@{/articulo/nuevo}">Nuevo Cliente</a>
+            <br>
+            <br>
+
+            <div th:if="${articulos != null and !articulos.empty}">
+                <table border="1">
+                    <tr>
+                        <td>Descripción</td>
+                        <td>Precio</td>
+                        <td>Existencias</td>
+                        <td>Activo</td>
+                        <td>Modificar</td>
+                        <td>Eliminar</td>
+                    </tr>
+
+                    <tr th:each="item: ${articulos}">
+                        <td th:text="${item.descripcion}"></td>
+                        <td th:text="${#numbers.formatDecimal(item.precio,3,2)}"></td>
+                        <td th:text="${item.existencias}"></td>
+                        <td><input type="checkbox" name="activo" th:checked="$(item.activo)" disabled="true"></td>
+                        <td><a th:href="@{/articulo/modificar} + ${item.idArticulo}">Modificar</a></td>
+                        <td><a th:href="@{/articulo/eliminar} + ${item.idArticulo}">Eliminar</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div th:if="${clientes == null or clientes.empty}"> 
+                No existen clientes para mostrar
+            </div>
+        </div>
+
+        <footer th:replace="layout/plantilla :: footer"> </footer>
+    </body>
+</html>

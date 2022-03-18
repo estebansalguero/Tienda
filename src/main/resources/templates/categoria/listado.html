@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlsn:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla ::header"></header>
+
+        <div class="contenido">
+            <h2>Listado de categorías</h2>
+            <br>
+            <a th:href="@{/categoria/nuevo}">Nueva Categoria</a>
+            <br>
+            <br>
+
+            <div th:if="${categorias != null and !categorias.empty}">
+                <table border="1">
+                    <tr>
+                        <td>Descripción</td>
+                        <td>Activo</td>
+                        <td>Modificar</td>
+                        <td>Eliminar</td>
+                    </tr>
+
+                    <tr th:each="item: ${categorias}">
+                        <td th:text="${item.descripcion}"></td>
+                        <td><input type="checkbox" name="activo" th:checked="$(item.activo)" disabled="true"></td>
+                        <td><a th:href="@{/categoria/modificar} + ${item.idCategoria}">Modificar</a></td>
+                        <td><a th:href="@{/categoria/eliminar} + ${item.idCategoria}">Eliminar</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div th:if="${clientes == null or clientes.empty}"> 
+                No existen categorias para mostrar
+            </div>
+        </div>
+
+        <footer th:replace="layout/plantilla :: footer"> </footer>
+    </body>
+</html>
