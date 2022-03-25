@@ -5,22 +5,29 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <header class="header">
+        
+        <header th:fragment="header" class="header">
             <nav class="nav">
-                <a href="index.html" class="nav-link logo">Tech Shop</a>
+                <a th:href="@{/}" class="nav-link logo" >Tech Shop</a>
                 <ul class="nav-menu">
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="Ejemplo9.html">&LeftTriangleBar;</a></li>
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="Ejemplo1.html">&RightTriangleBar;</a></li>
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="audios.html">Audios</a></li>
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="videos.html">Videos</a></li>
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="iframe.html">iFrame</a></li>
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="formulario.html">Formularios</a></li>
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link nav-link" th:href="@{/cliente/listado}" >Clientes</a>
+                    </li> 
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link nav-link" th:href="@{/articulo/listado}">Articulos</a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link nav-link" th:href="@{/categoria/listado}">Categorias</a>
+                    </li>
                 </ul>
             </nav>
         </header>
 
-        <footer>
-            &COPY; Derechos reservados 2022
+        <footer class="footer">
+            <p>&COPY; [#{plantilla.derechos}]
+                <a th:href="@{/(lang=es)}">ES</a>
+                <a th:href="@{/(lang=en)}">EN</a>
+            </p>
         </footer>
     </body>
 </html>
