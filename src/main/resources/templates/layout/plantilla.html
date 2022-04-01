@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlsn:th="http://www.thymeleaf.org">
+<html xmlsn:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -7,7 +8,7 @@
     <body>
         
         <header th:fragment="header" class="header">
-            <nav class="nav">
+            <nav class="nav" sect:authorize="hasRole('ROLE_VENDEDOR')">
                 <a th:href="@{/}" class="nav-link logo" >Tech Shop</a>
                 <ul class="nav-menu">
                     <li class="nav-menu-item">
@@ -19,15 +20,25 @@
                     <li class="nav-menu-item">
                         <a class="nav-menu-link nav-link" th:href="@{/categoria/listado}">Categorias</a>
                     </li>
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link nav-link" th:href="@{/categoria/listado}" sect:authorize="hasRole('ROLE_VENDEDOR')">Admin</a>
+                    </li>
                 </ul>
             </nav>
         </header>
 
         <footer class="footer">
-            <p>&COPY; [#{plantilla.derechos}]
+            <div>&COPY; [#{plantilla.derechos}]
                 <a th:href="@{/(lang=es)}">ES</a>
                 <a th:href="@{/(lang=en)}">EN</a>
-            </p>
+                
+                User: <span sec:authentication="name">xx</span>
+                Roles: <span sec:authentication="principal.authorities">xx</span>
+                
+            <form method="POST" th:action="@{/logout}" style="display: inline;">
+                <a href="#" onclick="this.parentNode.submit();">Logout</a>
+            </form>
+            </div>
         </footer>
     </body>
 </html>
