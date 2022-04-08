@@ -20,19 +20,49 @@
             }
         </style>
     </head>
-    <body>
-        <div class="contenido"></div>
-        <h2 th:text="#{loin.login}" style="text-align: center">Login</h2>
-        <form method="POST" th:action="@{/login}">
-            <label for="username" th:text="#{login.username}">Username</label>
-            <br> 
-            <input type="text" name="username" id="username"/>
-            <br><br>
-            <label for="password" th:text="#{login.password}">Password</label>
-            <br> 
-            <input type="password" name="password" id="password" />
-        </form>
-    </div>
-    </body>
+    
+    <header th:replace="layout/plantilla :: header"></header>
+
+        <section id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">                   
+                </div>
+            </div>
+        </section>
+
+        <section id="login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{login.login}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" th:action="@{/login}">
+                                    <div class="row py-1 mb-2 bg-light">
+                                        <div class="form-group">
+                                            <label for="username">[[#{login.username}]]:</label>
+                                            <input type="text" name="username" id="username"/>
+                                        </div>
+                                    </div>
+                                    <div class="row py-1 mb-2 bg-light">
+                                        <div class="form-group">
+                                            <label for="password">[[#{login.password}]]:</label>
+                                            <input type="password" name="password" id="password"/>
+                                        </div>
+                                    </div>
+                                    <div class="row  py-1 mb-2 bg-light">
+                                        <button type="submit" class="btn btn-primary btn-block">[[#{login.login}]]</button>                                        
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer th:replace="layout/plantilla :: footer"></footer>
     
 </html>
