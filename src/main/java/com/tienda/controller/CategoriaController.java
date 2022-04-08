@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @Slf4j
-
 public class CategoriaController {
 
     @Autowired
@@ -19,9 +18,11 @@ public class CategoriaController {
 
     @GetMapping("/categoria/listado")
     public String inicio(Model model) {
+
         var categorias = categoriaService.getCategorias(false);
+
         model.addAttribute("categorias", categorias);
-        
+
         return "/categoria/listado";
     }
 
@@ -29,22 +30,23 @@ public class CategoriaController {
     public String nuevoCategoria(Categoria categoria) {
         return "/categoria/modifica";
     }
-    
+
     @PostMapping("/categoria/guardar")
-    public String guardarCategoria(Categoria categoria){
+    public String guardarCategoria(Categoria categoria) {
         categoriaService.save(categoria);
         return "redirect:/categoria/listado";
     }
-    
+
     @GetMapping("/categoria/modificar/{idCategoria}")
-    public String modificarCategoria(Categoria categoria, Model model){
+    public String modificarCategoria(Categoria categoria, Model model) {
         var respuesta = categoriaService.getCategoria(categoria);
         model.addAttribute("categoria", respuesta);
+
         return "/categoria/modifica";
     }
-    
-    @GetMapping("/categoria/eliminar/{idCategoria}")
-    public String eliminarCategoria(Categoria categoria){
+
+    @GetMapping("categoria/eliminar/{idCategoria}")
+    public String eliminarCategoria(Categoria categoria) {
         categoriaService.delete(categoria);
         return "redirect:/categoria/listado";
     }

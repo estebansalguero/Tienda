@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 @Slf4j
-
 public class IndexController {
 
     @Autowired
@@ -20,8 +19,9 @@ public class IndexController {
         log.info("Ahora se usa arquitectura MVC");
 
         var articulos = articuloService.getArticulos(true);
+
         model.addAttribute("articulos", articulos);
-        
+
         return "index";
     }
 

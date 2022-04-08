@@ -31,11 +31,13 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registro) {
         registro.addInterceptor(localeChangeInterceptor());
     }
-    
+
     @Override
-    public void addViewControllers(ViewControllerRegistry registro){
+    public void addViewControllers(ViewControllerRegistry registro) {
         registro.addViewController("/").setViewName("index");
         registro.addViewController("/login");
-        registro.addViewController("/errores/403").setViewName("/errores/403");
+        registro.addViewController("/errores/403").setViewName("errores/403");
+        registro.addViewController("/errores/404").setViewName("errores/404");
+
     }
 }
