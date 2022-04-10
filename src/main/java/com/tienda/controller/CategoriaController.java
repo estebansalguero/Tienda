@@ -5,9 +5,8 @@ import com.tienda.service.CategoriaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @Slf4j
@@ -18,9 +17,7 @@ public class CategoriaController {
 
     @GetMapping("/categoria/listado")
     public String inicio(Model model) {
-
         var categorias = categoriaService.getCategorias(false);
-
         model.addAttribute("categorias", categorias);
 
         return "/categoria/listado";
@@ -41,11 +38,10 @@ public class CategoriaController {
     public String modificarCategoria(Categoria categoria, Model model) {
         var respuesta = categoriaService.getCategoria(categoria);
         model.addAttribute("categoria", respuesta);
-
         return "/categoria/modifica";
     }
 
-    @GetMapping("categoria/eliminar/{idCategoria}")
+    @GetMapping("/categoria/eliminar/{idCategoria}")
     public String eliminarCategoria(Categoria categoria) {
         categoriaService.delete(categoria);
         return "redirect:/categoria/listado";

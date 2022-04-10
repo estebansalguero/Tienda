@@ -24,7 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user")
                 .password("{noop}123")
                 .roles("USER");
-
     }
 
     @Override
@@ -37,9 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/cliente/nuevo", "/cliente/guardar",
                         "/cliente/modificar/**", "/cliente/eliminar/**",
                         "/usuario/nuevo", "/usuario/guardar",
-                        "/usuario/modificar/**", "/usuario/eliminar/**")
+                        "/usuario/modificar/**", "/usaurio/eliminar/**")
                 .hasRole("ADMIN")
-                .antMatchers("/articulo/listado", "/categoria/listado", "/cliente/listado")
+                .antMatchers("/articulo/listado", "/categoria/listado",
+                        "/cliente/listado")
                 .hasAnyRole("ADMIN", "VENDEDOR")
                 .antMatchers("/")
                 .hasAnyRole("ADMIN", "VENDEDOR", "USER")
@@ -49,5 +49,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/errores/403");
     }
-
 }
