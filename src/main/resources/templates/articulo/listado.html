@@ -1,3 +1,4 @@
+<!-- comment
 <!DOCTYPE html>
 <html xmlsn:th="http://www.thymeleaf.org">
     <head>
@@ -48,5 +49,24 @@
             </div>
 
             <footer th:replace="layout/plantilla :: footer"> </footer>
+    </body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Listado</title>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section th:replace="articulo/fragmentosArticulo :: botonesAgregar"/>
+        <section th:replace="articulo/fragmentosArticulo :: agregarArticulos"/>
+        <section th:replace="articulo/fragmentosArticulo :: listadoArticulos"/>
+
+        <footer th:replace="layout/plantilla :: footer"></footer>
+
     </body>
 </html>

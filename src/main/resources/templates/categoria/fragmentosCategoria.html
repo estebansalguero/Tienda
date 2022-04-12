@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -14,7 +15,7 @@
                             type="button" 
                             class="btn btn-primary btn-block" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarCliente">
+                            data-bs-target="#agregarCategoria">
                             <i class="fas fa-plus"></i> [[#{accion.agregar}]]
                         </button>
                     </div>
@@ -22,38 +23,36 @@
             </div>
         </section>
 
-        <section th:fragment="listadoClientes" id="clientes">
+        <section th:fragment="listadoCategorias" id="categorias">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h4>[[#{cliente.titulo}]]</h4>
+                                <h4>[[#{categoria.descripcion}]]</h4>
                             </div>
-                            <div th:if="${clientes != null and !clientes.empty}">
+                            <div th:if="${categorias != null and !categorias.empty}">
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>#</th>
-                                            <th th:text="#{cliente.nombre}">Nombre</th>
-                                            <th th:text="#{cliente.limite}">Límite</th>
+                                            <th th:text="#{categoria.descripcion}">Descripción</th>
+                                            <th th:text="#{categoria.activo}">Activo</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="cliente, contador : ${clientes}">
-                                            <td>[[${contador.count}]]</td>
-                                            <td>[[${cliente.nombre} + ' ' + ${cliente.apellidos}]]</td>
-                                            <td class="text-end">[[${new java.text.DecimalFormat('$#,##0.00').format(cliente.credito.limite)}]]</td>
+                                        <tr th:each="categoria : ${categorias}">
+                                            <td>[[${categoria.descripcion}]]</td>
+                                            <td><input type="checkbox" name="activo" th:checked="${categoria.activo}" disabled="true"></td>
                                             <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/eliminar/}+${cliente.idCliente}"
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
                                                 </a>
                                             </td>
                                             <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/modificar/}+${cliente.idCliente}"
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
                                                    class="btn btn-success">
                                                     <i class="fas fa-angle-double-right"></i> [[#{accion.actualizar}]]
                                                 </a>
@@ -62,26 +61,17 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${clientes == null or clientes.empty}">
-                                <span th:text="#{cliente.no_mostrar}">Lista vacía</span>
+                            <div class="text-center p-2" th:if="${categorias == null or categorias.empty}">
+                                <span th:text="#{categoria.no_mostrar}">Lista vacía</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-center bg-danger text-white mb-3">
-                            <div class="card-body">
-                                <h3 th:text="#{cliente.limiteTotal}">Límite Total</h3>
-                                <h4 class="display-4">
-                                    [[${new java.text.DecimalFormat('$#,##0.00').format(limiteTotal)}]]
-                                </h4>
-                            </div>
-                        </div>
-
                         <div class="card text-center bg-success text-white mb-3">
                             <div class="card-body">
-                                <h3 th:text="#{cliente.totalClientes}">Total Clientes</h3>
+                                <h3 th:text="#{categoria.totalCategorias}">Total Categorías</h3>
                                 <h4 class="display-4">
-                                    <i class="fas fa-users"></i> [[${totalClientes}]]
+                                    <i class="fas fa-users"></i> [[${totalCategorias}]]
                                 </h4>
                             </div>
                         </div>
@@ -90,36 +80,24 @@
             </div>
         </section>
 
-        <section th:fragment="agregarCliente">
-            <div id="agregarCliente" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <section th:fragment="agregarCategorias">
+            <div id="agregarCategoria" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Cliente</h5>
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Categoría</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
-                        <form th:action="@{/cliente/guardar}" th:object="${cliente}"
+                        <form th:action="@{/categoria/guardar}" th:object="${categoria}"
                               method="POST" class="was-validated">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="nombre" th:text="#{cliente.nombre}">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre" required="true">
+                                    <label for="nombre" th:text="#{categoria.descripcion}">Descripción</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="apellidos" th:text="#{cliente.apellidos}">Apellidos</label>
-                                    <input type="text" class="form-control" name="apellidos" required="true">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email" th:text="#{cliente.correo}">Correo</label>
-                                    <input type="email" class="form-control" name="correo" required="true">
-                                </div>
-                                <div class="form-group">
-                                    <label for="telefono" th:text="#{cliente.telefono}">Teléfono</label>
-                                    <input type="tel" class="form-control" name="telefono">
-                                </div>
-                                <div class="form-group">
-                                    <label for="limite" th:text="#{cliente.limite}">Límite</label>
-                                    <input type="number" class="form-control" name="credito.limite" required="true" step="any">
+                                    <label for="activo" th:text="#{categoria.activo}">Activo</label>
+                                    <input type="checkbox" class="form-control" name="activo" required="true">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -131,13 +109,13 @@
             </div>
         </section>
 
-        <section th:fragment="editarCliente">            
+        <section th:fragment="editarCategorias">            
             <form method="POST"
-                  th:action="@{/cliente/guardar}"
-                  th:object="${cliente}"
+                  th:action="@{/categoria/guardar}"
+                  th:object="${categoria}"
                   class="was-validated">
-                <input type="hidden" name="idCliente" th:field="*{idCliente}"/>
-                <section th:replace="cliente/fragmentosCliente :: botonesEditar"/> 
+                <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
+                <section th:replace="categoria/fragmentosCategoria :: botonesEditar"/> 
                 <div id="details">
                     <div class="container">
                         <div class="row">
@@ -148,32 +126,19 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="nombre" th:text="#{cliente.nombre}">Nombre: </label>
-                                            <input type="text" class="form-control" name="nombre" th:field="*{nombre}"/>
+                                            <label for="descripcion" th:text="#{categoria.descripcion}">Descripción: </label>
+                                            <input type="text" class="form-control" name="descripcion" th:field="*{descripcion}"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="apellidos" th:text="#{cliente.apellidos}">Apellidos: </label>
-                                            <input type="text"  class="form-control" name="apellidos" th:field="*{apellidos}"/>
+                                            <label for="activo" th:text="#{categoria.activo}">Activo: </label>
+                                            <input type="checkbox"  class="form-control" name="activo" th:field="*{activo}"/>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="correo" th:text="#{cliente.correo}">Correo: </label>
-                                            <input type="email"  class="form-control" name="correo" th:field="*{correo}"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="telefono" th:text="#{cliente.telefono}">Teléfono: </label>
-                                            <input type="tel"  class="form-control" name="telefono" th:field="*{telefono}"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="limite" th:text="#{cliente.limite}">Limite: </label>
-                                            <input type="number"  class="form-control" name="limite" th:field="*{credito.limite}"/>
-                                        </div>                    
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
         </section>
 
         <section th:fragment="botonesEditar">
@@ -181,7 +146,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <a th:href="@{/cliente/listado}" class="btn btn-ligth btn-block">
+                            <a th:href="@{/categoria/listado}" class="btn btn-ligth btn-block">
                                 <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                             </a>
                         </div>
@@ -191,7 +156,7 @@
                             </button>
                         </div>
                         <div class="col-md-3">
-                            <a th:href="@{/cliente/eliminar/}+${cliente.idCliente}"
+                            <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
                                class="btn btn-danger btn-block">
                                 <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                             </a>
@@ -200,5 +165,7 @@
                 </div>
             </div>
         </section>
+
+
     </body>
 </html>

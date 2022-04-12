@@ -1,46 +1,13 @@
-<!DOCTYPE html>
-<html xmlsn:th="http://www.thymeleaf.org">
-    <head>
-        <title>Nuevo Categoria</title>
-        <meta charset="UTF-8">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
-
     <body>
-        <div class="contenido">
-            <h2>Datos categoria</h2>
-            <br>
-            <a th:href="@{/categoria/listado}">Regresar</a>
-            <br>
-            <br>
-
-            <form th:action="@{/categoria/guardar}"
-                  method="post"
-                  th:object="${categoria}">
-                <input type="hidden" name="idCategoria" th:field="*{idCategoria}" />
-                <label for="categoria">Categoria: </label>
-                <select th:field="*{idCategoria}">
-                    <option th:each="item : ${categorias}"
-                            th:value="${item.idCategoria}"
-                            th:text="${item.descripcion}"
-                            />
-                </select>
-
-                <br>
-                <label for="descripcion">Descripcion: </label>
-                <input type="text" name="descripcion" th:field="*{descripcion}" />
-                <br>
-                <label for="activo">Activo</label>
-                <input type="checkbox" name="activo" th:field="*{activo}" />
-                <br>
-                <input type="submit" name="guardar" value="Guardar registro"
-                <br>
-            </form>
-
-            <footer th:replace="layout/plantilla :: footer">
-
-            </footer>
-        </div>
-
+        <header th:replace="layout/plantilla :: header" />
+        <section th:replace="categoria/fragmentosCategoria :: editarCategorias"/> 
+        <footer th:replace="layout/plantilla :: footer" />
     </body>
 </html>

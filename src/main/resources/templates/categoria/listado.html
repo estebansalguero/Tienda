@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html xmlsn:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
@@ -37,5 +37,23 @@
         </div>
 
         <footer th:replace="layout/plantilla :: footer"> </footer>
+    </body>
+</html>
+ comment -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Listado</title>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section th:replace="categoria/fragmentosCategoria :: botonesAgregar"/>
+        <section th:replace="categoria/fragmentosCategoria :: agregarCategorias"/>
+        <section th:replace="categoria/fragmentosCategoria :: listadoCategorias"/>
+
+        <footer th:replace="layout/plantilla :: footer"></footer>
+
     </body>
 </html>
