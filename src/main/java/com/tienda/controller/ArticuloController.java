@@ -25,12 +25,27 @@ public class ArticuloController {
         model.addAttribute("articulos", articulos);
 
         return "/articulo/listado";
-    }*/
+    }
     
     @GetMapping("/articulo/listado")
     public String inicio(Model model) {
         var articulos = articuloService.getArticulos(false);
         
+        model.addAttribute("totalArticulos",articulos.size());
+        
+        model.addAttribute("articulos",articulos);
+        return "/articulo/listado";
+    }*/
+    
+    @GetMapping("/articulo/listado")
+    public String inicio(Model model) {
+        var articulos = articuloService.getArticulos(false);
+
+        var existencias = 0;
+        for (var c : articulos) {
+            existencias += c.getExistencias();
+        }
+        model.addAttribute("existencias", existencias);
         model.addAttribute("totalArticulos",articulos.size());
         
         model.addAttribute("articulos",articulos);
