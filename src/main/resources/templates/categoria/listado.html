@@ -53,6 +53,18 @@
         <section th:replace="categoria/fragmentosCategoria :: agregarCategorias"/>
         <section th:replace="categoria/fragmentosCategoria :: listadoCategorias"/>
 
+        <section class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/categoria/ReporteCategorias}"
+                           class="btn btn-primary">
+                            <i class="fas fa-file"></i> Reporte </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <footer th:replace="layout/plantilla :: footer"></footer>
 
     </body>
